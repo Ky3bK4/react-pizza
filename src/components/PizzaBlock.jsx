@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 
-const PizzaBlock = ({
+const PizzaBlock = React.memo(function PizzaBlock({
   id,
   name,
   imageUrl,
@@ -11,7 +10,7 @@ const PizzaBlock = ({
   price,
   category,
   rating,
-}) => {
+}) {
   const typesPizzas = ['тонкое', 'традиционное'];
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
@@ -79,21 +78,6 @@ const PizzaBlock = ({
       </div>
     </div>
   );
-};
-
-PizzaBlock.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string,
-  price: PropTypes.number,
-  types: PropTypes.arrayOf(PropTypes.number),
-  sizes: PropTypes.arrayOf(PropTypes.number),
-};
-
-PizzaBlock.defaultProps = {
-  types: [],
-  sizes: [],
-  price: 0,
-};
+});
 
 export default PizzaBlock;

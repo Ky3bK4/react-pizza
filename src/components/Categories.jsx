@@ -1,40 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
-const Categories = ({ items, onClick }) => {
-  const [activeItem, setActiveItem] = useState(null);
+const Categories = React.memo(function Categories({
+  activeCategory,
+  categoryNames,
+  onSelectCategory,
+}) {
 
-  const changeCategory = (category, idx) => {
-    if (category === 'Все') {
-      setActiveItem(null);
-    } else {
-      setActiveItem(idx);
-    }
-    onClick(category);
-  };
+
 
   return (
     <div className='categories'>
       <ul>
         <li
-          onClick={() => changeCategory('Все', null)}
-          className={classNames({ active: null === activeItem })}
+          onClick={() => onSelectCategory(null)}
+          className={classNames({ active: null === activeCategory })}
         >
           Все
         </li>
-        { items &&
-          items.map((item, idx) => (
-          <li
-            key={`${item}_${idx}`}
-            onClick={() => changeCategory(item, idx)}
-            className={classNames({ active: idx === activeItem })}
-          >
-            {item}
-          </li>
-        ))}
+        {categoryNames &&
+          categoryNames.map((category, idx) => (
+            <li
+              key={`${category}_${idx}`}
+              onClick={() => onSelectCategory(idx)}
+              className={classNames({ active: idx === activeCategory })}
+            >
+              {category}
+            </li>
+          ))}
       </ul>
     </div>
   );
-};
+});
+
 
 export default Categories;

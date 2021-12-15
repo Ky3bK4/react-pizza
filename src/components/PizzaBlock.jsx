@@ -12,8 +12,10 @@ const PizzaBlock = React.memo(function PizzaBlock({
   rating,
 }) {
   const typesPizzas = ['тонкое', 'традиционное'];
+  const dispatch = useDispatch();
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
+
   const sizesPizzas = [26, 30, 40];
 
   const onSelectType = (index) => {
@@ -22,6 +24,10 @@ const PizzaBlock = React.memo(function PizzaBlock({
   const onSelectSize = (size) => {
     setActiveSize(size);
   };
+
+  const onAddToCart = (obj) => {
+
+  }
 
   return (
     <div className='pizza-block'>

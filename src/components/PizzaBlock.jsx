@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import {Button} from "./index";
 
 const PizzaBlock = React.memo(function PizzaBlock({
   id,
@@ -10,13 +11,14 @@ const PizzaBlock = React.memo(function PizzaBlock({
   price,
   category,
   rating,
+  onAddToCart,
+  countAddedPizzas
 }) {
   const typesPizzas = ['тонкое', 'традиционное'];
-  const dispatch = useDispatch();
+  const sizesPizzas = [26, 30, 40];
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
 
-  const sizesPizzas = [26, 30, 40];
 
   const onSelectType = (index) => {
     setActiveType(index);
@@ -25,8 +27,13 @@ const PizzaBlock = React.memo(function PizzaBlock({
     setActiveSize(size);
   };
 
-  const onAddToCart = (obj) => {
-
+  const handleAddToCart = () => {
+    onAddToCart({id,
+      name,
+      imageUrl,
+      price,
+      type: typesPizzas[activeType],
+      size: activeSize})
   }
 
   return (
@@ -65,7 +72,7 @@ const PizzaBlock = React.memo(function PizzaBlock({
       </div>
       <div className='pizza-block__bottom'>
         <div className='pizza-block__price'>от {price} ₽</div>
-        <div className='button button--outline button--add'>
+        <Button onClick={handleAddToCart} outline add>
           <svg
             width='12'
             height='12'
@@ -79,8 +86,8 @@ const PizzaBlock = React.memo(function PizzaBlock({
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {countAddedPizzas && <i>{countAddedPizzas}</i>}
+        </Button>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 const Sort = ({ sortItems, activeSortType, onSelectSortType }) => {
   const [isVisiblePopup, setIsVisiblePopup] = useState(false);
 
-  const activeLabel = sortItems.find(obj => obj.type === activeSortType).name;
+  const activeLabel = sortItems.find((obj) => obj.type === activeSortType).name;
 
   const sortRef = useRef(null);
 
@@ -13,14 +13,15 @@ const Sort = ({ sortItems, activeSortType, onSelectSortType }) => {
   };
 
   const handleOutsideClick = (e) => {
-    if (!e.path.includes(sortRef.current)) setIsVisiblePopup(false);
+    let path = e.path || (e.composedPath && e.composedPath());
+    if (!path.includes(sortRef.current)) setIsVisiblePopup(false);
   };
 
   const onSelectItem = (index) => {
     setIsVisiblePopup(false);
-    onSelectSortType(index)
+    onSelectSortType(index);
   };
-  
+
   useEffect(() => {
     document.addEventListener('click', handleOutsideClick);
     return () => document.removeEventListener('click', handleOutsideClick);
@@ -52,7 +53,9 @@ const Sort = ({ sortItems, activeSortType, onSelectSortType }) => {
                 <li
                   key={`${obj.type}_${idx}`}
                   onClick={() => onSelectItem(obj.type)}
-                  className={classNames({ active: activeSortType === obj.type })}
+                  className={classNames({
+                    active: activeSortType === obj.type,
+                  })}
                 >
                   {obj.name}
                 </li>

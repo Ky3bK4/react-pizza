@@ -11,7 +11,7 @@ const flatObj = (obj) => {
     .flat();
 };
 
-const getObjectOfPriceAndCount = (arr) => ({
+const getObjectPriceAndCount = (arr) => ({
   totalPrice: getTotalPrice(arr),
   totalCount: arr.length,
 });
@@ -52,27 +52,11 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         items: newItems,
-        ...getObjectOfPriceAndCount(arrPizzas),
+        ...getObjectPriceAndCount(arrPizzas),
       };
     }
 
     case 'REMOVE_CART_ITEM': {
-      // const newItems = { ...state.items };
-      //
-      // const newTotalPrice =
-      //   state.totalPrice - newItems[action.payload].totalPrice;
-      // const newTotalCount =
-      //   state.totalCount - newItems[action.payload].items.length;
-      //
-      // delete newItems[action.payload];
-      //
-      // return {
-      //   ...state,
-      //   items: newItems,
-      //   totalCount: newTotalCount,
-      //   totalPrice: newTotalPrice,
-      // };
-
       return deleteItemFromCart(state, action.payload);
     }
 
@@ -97,7 +81,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         items: newItems,
-        ...getObjectOfPriceAndCount(arrPizzas),
+        ...getObjectPriceAndCount(arrPizzas),
       };
     }
 
@@ -124,7 +108,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         items: newItems,
-        ...getObjectOfPriceAndCount(arrPizzas),
+        ...getObjectPriceAndCount(arrPizzas),
       };
     }
 

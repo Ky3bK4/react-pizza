@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import {Button} from "./index";
+import { Button } from './index';
 
 const PizzaBlock = React.memo(function PizzaBlock({
   id,
@@ -9,16 +9,13 @@ const PizzaBlock = React.memo(function PizzaBlock({
   types,
   sizes,
   price,
-  category,
-  rating,
   onAddToCart,
-  countAddedPizzas
+  countAddedPizzas,
 }) {
   const typesPizzas = ['тонкое', 'традиционное'];
   const sizesPizzas = [26, 30, 40];
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
-
 
   const onSelectType = (index) => {
     setActiveType(index);
@@ -28,13 +25,15 @@ const PizzaBlock = React.memo(function PizzaBlock({
   };
 
   const handleAddToCart = () => {
-    onAddToCart({id,
+    onAddToCart({
+      id,
       name,
       imageUrl,
       price,
       type: typesPizzas[activeType],
-      size: activeSize})
-  }
+      size: activeSize,
+    });
+  };
 
   return (
     <div className='pizza-block'>

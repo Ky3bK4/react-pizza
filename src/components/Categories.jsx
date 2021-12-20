@@ -6,9 +6,6 @@ const Categories = React.memo(function Categories({
   categoryNames,
   onSelectCategory,
 }) {
-
-
-
   return (
     <div className='categories'>
       <ul>
@@ -32,6 +29,5 @@ const Categories = React.memo(function Categories({
     </div>
   );
 });
-
 
 export default Categories;

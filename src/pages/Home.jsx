@@ -32,13 +32,19 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
-  const onSelectCategory = useCallback((idx) => {
-    dispatch(setCategory(idx));
-  }, []);
+  const onSelectCategory = useCallback(
+    (idx) => {
+      dispatch(setCategory(idx));
+    },
+    [dispatch]
+  );
 
-  const onSelectSortType = useCallback((type) => {
-    dispatch(setSortBy(type));
-  }, []);
+  const onSelectSortType = useCallback(
+    (type) => {
+      dispatch(setSortBy(type));
+    },
+    [dispatch]
+  );
 
   const onAddToCart = (obj) => {
     dispatch(addToCart(obj));
@@ -47,7 +53,7 @@ const Home = () => {
   //Fetch pizzas
   useEffect(() => {
     dispatch(fetchPizzas(sortBy, category));
-  }, [sortBy, category]);
+  }, [dispatch, sortBy, category]);
 
   return (
     <div className='container'>

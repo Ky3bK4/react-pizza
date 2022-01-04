@@ -11,6 +11,10 @@ const Cart = () => {
   const { items, totalPrice, totalCount } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
+  const onSubmitPay = () => {
+    alert(`Ваш заказ на сумму ${totalPrice} ₽ принят на обработку :)` )
+  }
+
   const onClearCart = () => {
     if (window.confirm('Вы действительно хотите очистить корзину')) {
       dispatch(clearCart());
@@ -139,9 +143,10 @@ const Cart = () => {
                   <span>Вернуться назад</span>
                 </Button>
               </Link>
-              <div className='button pay-btn'>
+              <Button onClick={onSubmitPay} pay>
                 <span>Оплатить сейчас</span>
-              </div>
+              </Button>
+
             </div>
           </div>
         </div>
